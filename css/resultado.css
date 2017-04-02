@@ -1,0 +1,21 @@
+span {
+    width: 100px;
+    display: inline-block;
+}
+.boton {
+    background-color: sandybrown;
+    color: white;
+}
+#resultado{
+    display: inline-block;
+    width: 400px;
+    margin-left: 20px;
+}
+#imagen img{
+    display: inline-block;
+    width: 500px;
+    border: 2px solid black;
+    border-radius: 10px;
+    float:left;
+    clear:left;
+}
