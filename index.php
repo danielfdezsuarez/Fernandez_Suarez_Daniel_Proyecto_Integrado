@@ -15,6 +15,13 @@
         <a href="panel_admin.php"><button>PANEL ADMIN</button></a>
         <a href="login.php"><button>LOGIN</button></a>
         <a href="logout.php"><button>LOGOUT</button></a>
+        <div class="tema">
+          Elegir tema:
+          <input type="radio" name="tema" value="tema0"> Prederminado
+          <input type="radio" name="tema" value="tema1"> nocturno
+          <input type="radio" name="tema" value="tema2"> Verde
+          <a href="tema_user.php"><input type="submit" value="ok"></a>
+        </div>
       </header>
       
       <?php include 'logo.php'; ?>
