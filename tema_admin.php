@@ -18,7 +18,7 @@
       <?php if (!isset($_POST["id_user"])) : ?>
 
         <?php
-        $cod=$_GET['id'];
+        $cod=$_GET['tema'];
         $connection = new mysqli("localhost", "root", "123456", "camisetas");
         if ($connection->connect_errno) {
             printf("Connection failed: %s\n", $connection->connect_error);
@@ -27,7 +27,8 @@
         
         $query="SELECT tema FROM usuario WHERE id_user='$cod'";
         if ($result = $connection->query($query)) {
-            
+            echo "hola1";
+            var_dump ($result);
             while($obj = $result->fetch_object()){
                 
             /*$obj = $result->fetch_object();
@@ -38,3 +39,7 @@
                 }
         }
         ?>
+
+<?php else: ?>
+
+<?php endif ?>

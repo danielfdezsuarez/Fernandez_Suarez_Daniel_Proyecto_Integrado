@@ -16,7 +16,7 @@
         <a href="login.php"><button>LOGIN</button></a>
         <a href="logout.php"><button>LOGOUT</button></a>
         <div class="tema">
-          Elegir tema:
+          Elegir tema :
           <input type="radio" name="tema" value="tema0"> Prederminado
           <input type="radio" name="tema" value="tema1"> nocturno
           <input type="radio" name="tema" value="tema2"> Verde
