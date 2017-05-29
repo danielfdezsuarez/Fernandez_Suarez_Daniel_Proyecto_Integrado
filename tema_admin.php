@@ -29,6 +29,7 @@
         if ($result = $connection->query($query)) {
             echo "hola1";
             var_dump ($result);
+            var_dump ($query);
             while($obj = $result->fetch_object()){
                 
             /*$obj = $result->fetch_object();

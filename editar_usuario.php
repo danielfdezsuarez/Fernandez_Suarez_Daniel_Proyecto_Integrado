@@ -7,39 +7,7 @@
     header("Location: login.php");
   }
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EDITAR USUARIO</title>
-    <link rel="stylesheet" type="text/css" href=" ">
-    <style>
-          span {
-            width: 100px;
-            display: inline-block;
-          }
-          fieldset img {
-            max-height: 900px;
-            max-width: 900px;  
-          }
-          <?php include 'css/body.css'; ?>
-          <?php include 'css/logo.css'; ?>
-    </style>
-  </head>
-  <body>
-      <header>
-        <a href="panel_admin.php"><button>PANEL ADMIN</button></a>
-        <a href="usuarios.php"><button>USUARIOS</button></a>
-        <a href="login.php"><button>LOGIN</button></a>
-        <a href="logout.php"><button>LOGOUT</button></a>
-      </header>
-      <?php include 'logo.php'; ?><br>
-      
-      <?php if (!isset($_POST["id_user"])) : ?>
-
-        <?php
+<?php
         $cod=$_GET['id'];
         $connection = new mysqli("localhost", "root", "123456", "camisetas");
         if ($connection->connect_errno) {
@@ -54,8 +22,40 @@
             $user=$obj->user;
             $password=$obj->password;
             $mail=$obj->mail;
+            $tema=$obj->tema;
         }
-        ?>
+?>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDITAR USUARIO</title>
+    <link rel="stylesheet" type="text/css" href="css/<?php echo $tema;?>.css">
+    <?php include("elegirtema.php"); ?>
+      <style>
+          span {
+            width: 100px;
+            display: inline-block;
+          }
+          fieldset img {
+            max-height: 900px;
+            max-width: 900px;  
+          }
+          <?php include 'css/logo.css'; ?>
+    </style>
+    
+  </head>
+  <body>
+      <header>
+        <a href="panel_admin.php"><button>PANEL ADMIN</button></a>
+        <a href="usuarios.php"><button>USUARIOS</button></a>
+        <a href="login.php"><button>LOGIN</button></a>
+        <a href="logout.php"><button>LOGOUT</button></a>
+      </header>
+      <?php include 'logo.php'; ?><br>
+      
+      <?php if (!isset($_POST["id_user"])) : ?>
 
         <form action="editar_usuario.php" method="post" enctype="multipart/form-data">
           <fieldset>
@@ -64,6 +64,14 @@
             <span>User:</span><input type="text" name="user" value="<?php echo $user; ?>"><br>
             <span>Password:</span><input type="password" name="password" value="<?php echo $password; ?>"><br>
             <span>Mail:</span><input type="text" name="mail" value="<?php echo $mail; ?>"><br>
+            <!--<span>Tema:</span><input type="text" name="tema" value="<?php echo $tema; ?>"><br>-->
+            <span>Tema:</span>
+              <select name="tema"><br>
+                  <option value="predeterminado">Predeterminado</option>
+                  <option value="negro">Nocturno</option>
+                  <option value="verde">Verde</option>
+              </select>
+              
 	        <span><input type="submit" value="Enviar"><br>
 	      </fieldset>
         </form><br>
@@ -81,12 +89,14 @@
         $user=$_POST['user'];
         $password=$_POST['password'];
         $mail=$_POST['mail'];
+        $tema=$_POST['tema'];
                     
         $consulta="Update usuario SET 
         id_user='$id_user',
         user='$user',
         password=md5('$password'),
-        mail='$mail' WHERE id_user='$id_user'";
+        mail='$mail',
+        tema='$tema' WHERE id_user='$id_user'";
             
         $result = $connection->query($consulta);
         if (!$result) {
