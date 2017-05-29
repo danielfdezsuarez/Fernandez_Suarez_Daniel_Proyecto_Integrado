@@ -71,6 +71,8 @@
           <th>Observaciones</th>
             
       </thead>
+          
+          <a href="paneladminpdf.php"><img src="impdf.png" style="width:25px;height:25px"></a>
 
      <?php
           while($obj = $result->fetch_object()) {
@@ -97,6 +99,8 @@
               echo "</tr>";
           }
           
+          
+              
           $result->close();
           unset($obj);
           unset($connection);
