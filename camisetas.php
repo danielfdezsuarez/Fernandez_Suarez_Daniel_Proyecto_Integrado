@@ -62,7 +62,9 @@
           <th>Borrar_cam</th>
             
       </thead>
-
+          
+      <a href="camisetaspdf.php"><img src="impdf.png" style="width:25px;height:25px"></a>
+          
      <?php
           while($obj = $result->fetch_object()) {
              echo "<tr>";

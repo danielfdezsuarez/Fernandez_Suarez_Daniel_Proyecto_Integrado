@@ -25,25 +25,14 @@
     $pdf->Cell(32,5,"Nombre",1,0,'C');
     $pdf->Cell(20,5,"Pais",1,0,'C');
     $pdf->Cell(30,5,"Continente",1,0,'C');
-    $pdf->Cell(25,5,"Jugador",1,0,'C');
-    $pdf->Cell(12,5,"Dorsal",1,0,'C');
-    $pdf->Cell(15,5,"Marca",1,0,'C');
-    $pdf->Cell(23,5,"Publicidad",1,0,'C');
-    $pdf->Cell(21,5,"Temporada",1,0,'C');
     $pdf->ln();
 
-    if ($result = $connection->query("select * from camiseta join camiseta_equipo on camiseta.id_camiseta=camiseta_equipo.id_camiseta 
-      join equipo on camiseta_equipo.id_equipo=equipo.id_equipo order by camiseta.id_camiseta;")) {
+    if ($result = $connection->query("select * from equipo;")) {
         while($obj = $result->fetch_object()) {
             $pdf->Cell(20,5,$obj->club_seleccion,1,0,'C');
             $pdf->Cell(32,5,$obj->nombre,1,0,'C');
             $pdf->Cell(20,5,$obj->pais,1,0,'C');
             $pdf->Cell(30,5,$obj->continente,1,0,'C');
-            $pdf->Cell(25,5,$obj->jugador,1,0,'C');
-            $pdf->Cell(12,5,$obj->dorsal,1,0,'C');
-            $pdf->Cell(15,5,$obj->marca,1,0,'C');
-            $pdf->Cell(23,5,$obj->publicidad,1,0,'C');
-            $pdf->Cell(21,5,$obj->temporada,1,0,'C');
             $pdf->ln();
             }  
             }

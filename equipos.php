@@ -61,6 +61,8 @@
             
       </thead>
 
+      <a href="equipospdf.php"><img src="impdf.png" style="width:25px;height:25px"></a>
+          
      <?php
           while($obj = $result->fetch_object()) {
               //echo "<td>".$obj->id_equipo."</td>";

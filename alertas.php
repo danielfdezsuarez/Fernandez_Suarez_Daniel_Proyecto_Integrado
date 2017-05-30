@@ -59,6 +59,8 @@
           <th>Editar</th>
           <th>Borrar</th>
       </thead>
+          
+      <a href="alertaspdf.php"><img src="impdf.png" style="width:25px;height:25px"></a>
 
      <?php
           while($obj = $result->fetch_object()) {
