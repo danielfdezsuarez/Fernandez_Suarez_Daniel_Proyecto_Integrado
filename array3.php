@@ -7,14 +7,14 @@ $connection = new mysqli("localhost", "root", "123456", "camisetas");
           exit();
       }
       
-$query = "select marca, count(marca) as num from camiseta group by marca";
+$query = "select continente, count(continente) as num from equipo group by continente";
 
 $array = array();
 if ($result = $connection->query($query)) {
   
   $array['cols'] = array();
   $array['cols'][] = array(
-    'label' => 'marca',
+    'label' => 'continente',
     'type' => 'string'
   );
   $array['cols'][] = array(
@@ -26,7 +26,7 @@ if ($result = $connection->query($query)) {
   while($obj = $result->fetch_object()) {
     $array['rows'][]['c'] = array(
       array(
-        'v' => $obj->marca,
+        'v' => $obj->continente,
         'f' => null
       ),
       array(

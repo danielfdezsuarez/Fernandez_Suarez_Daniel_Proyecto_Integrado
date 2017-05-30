@@ -64,15 +64,13 @@
             <span>User:</span><input type="text" name="user" value="<?php echo $user; ?>"><br>
             <span>Password:</span><input type="password" name="password" value="<?php echo $password; ?>"><br>
             <span>Mail:</span><input type="text" name="mail" value="<?php echo $mail; ?>"><br>
-            <!--<span>Tema:</span><input type="text" name="tema" value="<?php echo $tema; ?>"><br>-->
             <span>Tema:</span>
               <select name="tema"><br>
                   <option value="predeterminado">Predeterminado</option>
                   <option value="negro">Nocturno</option>
                   <option value="verde">Verde</option>
               </select>
-              
-	        <span><input type="submit" value="Enviar"><br>
+            <span><input type="submit" value="Enviar"><br>
 	      </fieldset>
         </form><br>
 

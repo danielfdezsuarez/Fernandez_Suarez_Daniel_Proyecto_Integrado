@@ -7,14 +7,14 @@ $connection = new mysqli("localhost", "root", "123456", "camisetas");
           exit();
       }
       
-$query = "select marca, count(marca) as num from camiseta group by marca";
+$query = "select nombre, count(nombre) as num from equipo join camiseta_equipo on equipo.id_equipo=camiseta_equipo.id_equipo group by nombre";
 
 $array = array();
 if ($result = $connection->query($query)) {
   
   $array['cols'] = array();
   $array['cols'][] = array(
-    'label' => 'marca',
+    'label' => 'nombre',
     'type' => 'string'
   );
   $array['cols'][] = array(
@@ -26,7 +26,7 @@ if ($result = $connection->query($query)) {
   while($obj = $result->fetch_object()) {
     $array['rows'][]['c'] = array(
       array(
-        'v' => $obj->marca,
+        'v' => $obj->nombre,
         'f' => null
       ),
       array(

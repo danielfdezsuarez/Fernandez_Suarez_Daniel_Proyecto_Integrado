@@ -7,17 +7,40 @@
     header("Location: login.php");
   }
 ?>
+<?php
+        $cod=$_SESSION["user"];
+        $connection = new mysqli("localhost", "root", "123456", "camisetas");
+        if ($connection->connect_errno) {
+            printf("Connection failed: %s\n", $connection->connect_error);
+            exit();
+        }
+        
+        $query="SELECT * FROM usuario WHERE user='$cod'";
+        if ($result = $connection->query($query)) {
+            $obj = $result->fetch_object();
+            $user=$obj->user;
+            $tema=$obj->tema;
+        }
+?>
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="css/usuarios.css">
+    <link rel="stylesheet" type="text/css" href="css/<?php echo $tema;?>.css">
     <title>USUARIOS</title>
     <style>
-      <?php include 'css/body.css'; ?>
+      <?php include("elegirtema.php"); ?>
       <?php include 'css/logo.css'; ?>
+        img {
+            height: 50px;
+            width: 50px;
+        }
+        td {
+            text-align: center;
+            vertical-align: middle;
+        }
     </style>
   </head>
   <body>
@@ -87,4 +110,19 @@
       }
     ?>
   </body>
+  <footer>
+      
+      <form action="usuarios.php" method="post" enctype="multipart/form-data">
+          <fieldset>
+            <legend>EDITAR temitaRIO</legend>
+            <span>Tema:</span>
+              <select name="tema"><br>
+                  <option value="predeterminado">Predeterminado</option>
+                  <option value="negro">Nocturno</option>
+                  <option value="verde">Verde</option>
+              </select>
+            <span><input type="submit" value="Enviar"><br>
+	      </fieldset>
+        </form><br>
+  </footer>
 </html>
