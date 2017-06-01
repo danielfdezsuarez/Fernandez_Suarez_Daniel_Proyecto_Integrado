@@ -7,12 +7,14 @@
     header("Location: login.php");
   }
 ?>
+<?php include("tema.php"); ?>
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/<?php echo $tema;?>.css">
     <title>ALERTAS</title>
     <style>
         table img {
@@ -23,7 +25,6 @@
             text-align: center;
             vertical-align: middle;
         }
-        <?php include 'css/body.css'; ?>
         <?php include 'css/logo.css'; ?>
     </style>
   </head>
@@ -37,13 +38,7 @@
       <?php include 'logo.php'; ?><br>
       
     <?php
-      $connection = new mysqli("localhost", "root", "123456", "camisetas");
-      $connection->set_charset("utf8");
-      
-      if ($connection->connect_errno) {
-          printf("Connection failed: %s\n", $connection->connect_error);
-          exit();
-      }
+      include 'conexion.php';
       
       if ($result = $connection->query("select * from alerta;")) {
           //printf("<p>The select query returned %d rows.</p>", $result->num_rows);

@@ -20,6 +20,7 @@
   }
 
 ?>
+<?php include("tema.php"); ?>
 
 <head>
   <!--Load the AJAX API-->
@@ -103,7 +104,7 @@
      </script>
      <meta charset="utf-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="stylesheet" type="text/css" href="">
+     <link rel="stylesheet" type="text/css" href="css/<?php echo $tema;?>.css">
     
      <title>DASHBOARD</title>
      

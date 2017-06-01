@@ -20,18 +20,4 @@
         }
     }
 
-   /* if (isset($_SESSION["user"])){
-        $user=$_SESSION["user"];
-        $query="select tema from usuario where id_user=$user";
-          if ($result = $connection->query($query)){
-          while($obj = $result->fetch_object()){
-               echo'<link rel="stylesheet" href="css/'.$obj->tema.'.css" type="text/css" media="screen" />';
-               echo'<link href="css/'.$obj->tema.'.css" rel="stylesheet">';
-         }
-         }
-        } else{
-        echo'<link rel="stylesheet" href="css/Predeterminado.css" type="text/css" media="screen" />';
-        echo'<link href="css/Predeterminado.css" rel="stylesheet">';
-        }
-        */
 ?>

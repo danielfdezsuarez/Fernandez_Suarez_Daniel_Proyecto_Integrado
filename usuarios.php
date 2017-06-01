@@ -7,21 +7,7 @@
     header("Location: login.php");
   }
 ?>
-<?php
-        $cod=$_SESSION["user"];
-        $connection = new mysqli("localhost", "root", "123456", "camisetas");
-        if ($connection->connect_errno) {
-            printf("Connection failed: %s\n", $connection->connect_error);
-            exit();
-        }
-        
-        $query="SELECT * FROM usuario WHERE user='$cod'";
-        if ($result = $connection->query($query)) {
-            $obj = $result->fetch_object();
-            $user=$obj->user;
-            $tema=$obj->tema;
-        }
-?>
+<?php include("tema.php"); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -53,19 +39,13 @@
     
       <?php include 'logo.php'; ?>
       
-    <?php
-      $connection = new mysqli("localhost", "root", "123456", "camisetas");
-      $connection->set_charset("utf8");
-      
-      if ($connection->connect_errno) {
-          printf("Connection failed: %s\n", $connection->connect_error);
-          exit();
-      }
-      
-      if ($result = $connection->query("select * from usuario;")) {
-          //printf("<p>The select query returned %d rows.</p>", $result->num_rows);
-          echo "<br>";
-    ?>
+        <?php
+          include 'conexion.php';
+
+          if ($result = $connection->query("select * from usuario;")) {
+              //printf("<p>The select query returned %d rows.</p>", $result->num_rows);
+              echo "<br>";
+        ?>
 
  
       <table style="border:1px solid black">
@@ -110,19 +90,4 @@
       }
     ?>
   </body>
-  <footer>
-      
-      <form action="usuarios.php" method="post" enctype="multipart/form-data">
-          <fieldset>
-            <legend>EDITAR temitaRIO</legend>
-            <span>Tema:</span>
-              <select name="tema"><br>
-                  <option value="predeterminado">Predeterminado</option>
-                  <option value="negro">Nocturno</option>
-                  <option value="verde">Verde</option>
-              </select>
-            <span><input type="submit" value="Enviar"><br>
-	      </fieldset>
-        </form><br>
-  </footer>
 </html>

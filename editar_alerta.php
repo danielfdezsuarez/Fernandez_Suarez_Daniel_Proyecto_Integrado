@@ -7,6 +7,7 @@
     header("Location: login.php");
   }
 ?>
+<?php include("tema.php"); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +15,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EDITAR ALERTA</title>
-    <link rel="stylesheet" type="text/css" href=" ">
+    <link rel="stylesheet" type="text/css" href="css/<?php echo $tema;?>.css">
     <style>
           span {
             width: 100px;
@@ -23,7 +24,6 @@
           fieldset {
             width: 300px;  
           }
-          <?php include 'css/body.css'; ?>
           <?php include 'css/logo.css'; ?>
     </style>
   </head>
@@ -40,11 +40,7 @@
 
         <?php
         $cod=$_GET['id'];
-        $connection = new mysqli("localhost", "root", "123456", "camisetas");
-        if ($connection->connect_errno) {
-            printf("Connection failed: %s\n", $connection->connect_error);
-            exit();
-        }
+        include 'conexion.php';
         
         $query="SELECT * FROM alerta WHERE id_alerta='$cod'";
         if ($result = $connection->query($query)) {
@@ -61,11 +57,7 @@
             <input type="hidden" value="<?php echo $cod; ?>" name="id_alerta"/>
             <span>Equipo:</span><select name="id_equipo" required><br>
                         <?php
-                          $connection = new mysqli("localhost", "root", "123456", "camisetas");
-                          if ($connection->connect_errno) {
-                             printf("Connection failed: %s\n", $connection->connect_error);
-                          exit();
-                         }
+                         include 'conexion.php';
                          $result = $connection->query("SELECT id_equipo,nombre FROM equipo");
                          if ($result) {
                            while ($obj=$result->fetch_object()) {
@@ -93,11 +85,7 @@
 
         <?php
         
-        $connection = new mysqli("localhost", "root", "123456", "camisetas");
-        if ($connection->connect_errno) {
-            printf("Connection failed: %s\n", $connection->connect_error);
-            exit();
-        }
+        include 'conexion.php';
         $id_alerta=$_POST['id_alerta'];
         $id_equipo=$_POST['id_equipo'];
         $mail=$_POST['mail'];
