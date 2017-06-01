@@ -10,20 +10,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>INDEX</title>
     <?php 
-      if (isset($_SESSION["user"])) {
-        include("tema.php");
+        if (isset($_SESSION["user"])) {
+            echo 'Estás registrado como: '.$_SESSION['user'];
+            include("tema.php");
         $datos=tema($_SESSION['user']);
+        foreach ($datos as $dato) {
     ?>
-       <link rel="stylesheet" type="text/css" href="css/<?php echo $datos->tema;?>.css">
+        <link rel="stylesheet" type="text/css" href="css/<?php echo $dato->tema;?>.css">
     <?php 
-       
-      } else {
+        }
+        } else {
     ?>
-      <link rel="stylesheet" type="text/css" href="css/predeterminado.css">
+        <link rel="stylesheet" type="text/css" href="css/predeterminado.css">
     <?php
-     }
-      ?>
-    <link rel="stylesheet" type="text/css" href="css/<?php echo $tema;?>.css">
+    }
+    ?>
     <style>
       <?php include 'css/logo.css'; ?>
       <?php include 'css/index.css'; ?>
@@ -35,26 +36,13 @@
         <a href="panel_admin.php"><button>PANEL ADMIN</button></a>
         <a href="login.php"><button>LOGIN</button></a>
         <a href="logout.php"><button>LOGOUT</button></a>
-        <div class="tema">
-          Elegir tema :
-          <input type="radio" name="tema" value="tema0"> Prederminado
-          <input type="radio" name="tema" value="tema1"> nocturno
-          <input type="radio" name="tema" value="tema2"> Verde
-          <a href="tema_user.php"><input type="submit" value="ok"></a>
-        </div>
       </header>
       
       <?php include 'logo.php'; ?>
       
       
     <?php
-      $connection = new mysqli("localhost", "root", "123456", "camisetas");
-      $connection->set_charset("utf8");
-      
-      if ($connection->connect_errno) {
-          printf("Connection failed: %s\n", $connection->connect_error);
-          exit();
-      }
+      include 'conexion.php';
      
     ?>
       
@@ -65,11 +53,7 @@
             <span id="cosa">ELEGIR CLUB</span>
               <select name="cod_equipo" required><br>
                     <?php
-                      $connection = new mysqli("localhost", "root", "123456", "camisetas");
-                      if ($connection->connect_errno) {
-                         printf("Connection failed: %s\n", $connection->connect_error);
-                      exit();
-                     }
+                     include 'conexion.php';
                      $result = $connection->query("SELECT * FROM equipo where club_seleccion='club' order by nombre");
                      if ($result) {
                        while ($obj=$result->fetch_object()) {
@@ -93,11 +77,7 @@
             <span>ELEGIR SELECCIÓN</span>
               <select name="cod_equipo" required><br>
                     <?php
-                      $connection = new mysqli("localhost", "root", "123456", "camisetas");
-                      if ($connection->connect_errno) {
-                         printf("Connection failed: %s\n", $connection->connect_error);
-                      exit();
-                     }
+                     include 'conexion.php';
                      $result = $connection->query("SELECT * FROM equipo where club_seleccion='seleccion' order by nombre");
                      if ($result) {
                        while ($obj=$result->fetch_object()) {
@@ -121,13 +101,7 @@
         <div id="novedades">
         <?php
             echo "ULTIMAS CAMISETAS AÑADIDAS";
-            $connection = new mysqli("localhost", "root", "123456", "camisetas");
-            $connection->set_charset("utf8");
-
-            if ($connection->connect_errno) {
-                printf("Connection failed: %s\n", $connection->connect_error);
-                exit();
-            }
+            include 'conexion.php';
 
             if ($result = $connection->query("select * from camiseta order by id_camiseta desc limit 5;")) {
         ?>
@@ -168,11 +142,7 @@
         <?php
         
         $cod=$_POST['cod_equipo'];
-        $connection = new mysqli("localhost", "root", "123456", "camisetas");
-        if ($connection->connect_errno) {
-            printf("Connection failed: %s\n", $connection->connect_error);
-            exit();
-        }
+        include 'conexion.php';
         
         $query="select * from camiseta join camiseta_equipo on camiseta.id_camiseta=camiseta_equipo.id_camiseta join equipo on camiseta_equipo.id_equipo=equipo.id_equipo WHERE equipo.id_equipo='$cod'";
         if ($result = $connection->query($query)) {

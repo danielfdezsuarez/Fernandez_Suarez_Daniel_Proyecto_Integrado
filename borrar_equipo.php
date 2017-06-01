@@ -7,7 +7,7 @@
     header("Location: login.php");
   }
 ?>
-<?php include("tema.php"); ?>
+<?php include("tema2.php"); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -33,13 +33,7 @@
       
       $imagen_equipo="";
           
-      $connection=new mysqli("localhost", "root", "123456", "camisetas");
-      $connection->set_charset("utf8");
-      
-      if ($connection->connect_errno) {
-          printf("Connection failed: %s\n", $connection->connect_error);
-          exit();
-      }
+      include 'conexion.php';
           
       if ($result3 = $connection->query("SELECT imagen_equipo FROM equipo WHERE id_equipo=".$_GET['id'].";")) {
            $obj = $result3->fetch_object();

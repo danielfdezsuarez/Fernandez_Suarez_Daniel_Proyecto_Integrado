@@ -7,7 +7,7 @@
     header("Location: login.php");
   }
 ?>
-<?php include("tema.php"); ?>
+<?php include("tema2.php"); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -86,13 +86,7 @@
           //Put the file in its place
           move_uploaded_file($tmp_file, $target_fi);
           echo "Imagen añadida";
-          $connection = new mysqli("localhost", "root", "123456", "camisetas");
-          $connection->set_charset("uft8");
-          //TESTING IF THE CONNECTION WAS RIGHT
-          if ($connection->connect_errno) {
-              printf("Connection failed: %s\n", $connection->connect_error);
-              exit();
-          }
+          include 'conexion.php';
           //INSERTING THE NEW PRODUCT
           
           $id_equipo=$_POST['id_equipo'];

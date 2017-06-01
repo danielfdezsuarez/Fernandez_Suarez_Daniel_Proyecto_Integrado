@@ -9,7 +9,7 @@
 ?>
 
 <?php
-    $conexion=mysqli_connect("localhost", "root", "123456", "camisetas");
+    include 'conexion.php';
     if (isset($_POST["tema"])){
         $consulta="UPDATE usuario set tema='".$_POST["tema"]."'";
         $query=mysqli_query($conexion,$consulta);

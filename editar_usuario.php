@@ -9,11 +9,7 @@
 ?>
 <?php
         $cod=$_GET['id'];
-        $connection = new mysqli("localhost", "root", "123456", "camisetas");
-        if ($connection->connect_errno) {
-            printf("Connection failed: %s\n", $connection->connect_error);
-            exit();
-        }
+        include 'conexion.php';
         
         $query="SELECT * FROM usuario WHERE id_user='$cod'";
         if ($result = $connection->query($query)) {
@@ -78,11 +74,7 @@
 
         <?php
         
-        $connection = new mysqli("localhost", "root", "123456", "camisetas");
-        if ($connection->connect_errno) {
-            printf("Connection failed: %s\n", $connection->connect_error);
-            exit();
-        }
+        include 'conexion.php';
         $id_user=$_POST['id_user'];
         $user=$_POST['user'];
         $password=$_POST['password'];

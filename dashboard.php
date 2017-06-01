@@ -4,13 +4,7 @@
   
   session_start();
     
-    $connection = new mysqli("localhost", "root", "123456", "camisetas");
-      $connection->set_charset("utf8");
-      
-      if ($connection->connect_errno) {
-          printf("Connection failed: %s\n", $connection->connect_error);
-          exit();
-      }
+  include 'conexion.php';
     
   if (isset($_SESSION["user"])) {
     echo 'Estás registrado como: '.$_SESSION['user'];
@@ -20,7 +14,7 @@
   }
 
 ?>
-<?php include("tema.php"); ?>
+<?php include("tema2.php"); ?>
 
 <head>
   <!--Load the AJAX API-->

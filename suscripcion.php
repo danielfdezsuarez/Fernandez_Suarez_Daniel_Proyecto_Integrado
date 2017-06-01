@@ -1,10 +1,29 @@
+<?php
+  session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-    <link rel="stylesheet" type="text/css" href=" ">
+    <title>SUSCRIPCION</title>
+    <?php 
+        if (isset($_SESSION["user"])) {
+            echo 'Estás registrado como: '.$_SESSION['user'];
+            include("tema.php");
+        $datos=tema($_SESSION['user']);
+        foreach ($datos as $dato) {
+    ?>
+        <link rel="stylesheet" type="text/css" href="css/<?php echo $dato->tema;?>.css">
+    <?php 
+        }
+        } else {
+    ?>
+        <link rel="stylesheet" type="text/css" href="css/predeterminado.css">
+    <?php
+    }
+    ?>
     <style>
         span {
             width: 100px;
@@ -13,7 +32,6 @@
         fieldset {
             width: 300px;  
         }
-        <?php include 'css/body.css'; ?>
         <?php include 'css/logo.css'; ?>
     </style>
   </head>
@@ -25,11 +43,7 @@
 
         <?php 
         $cod=$_GET['id'];
-        $connection = new mysqli("localhost", "root", "123456", "camisetas");
-        if ($connection->connect_errno) {
-            printf("Connection failed: %s\n", $connection->connect_error);
-            exit();
-        }
+        include 'conexion.php';
 
         //var_dump($cod);
         
@@ -53,12 +67,7 @@
       <?php else: ?>
         
         <?php
-          $connection = new mysqli("localhost", "root", "123456", "camisetas");
-          $connection->set_charset("uft8");
-          if ($connection->connect_errno) {
-              printf("Connection failed: %s\n", $connection->connect_error);
-              exit();
-          }
+          include 'conexion.php';
           
           $id_alerta=$_POST['id_alerta'];
           $id_equipo=$_POST['id_equipo'];

@@ -7,7 +7,7 @@
     header("Location: login.php");
   }
 ?>
-<?php include("tema.php"); ?>
+<?php include("tema2.php"); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -47,11 +47,7 @@
 
         <?php 
         $cod=$_GET['id'];
-        $connection = new mysqli("localhost", "root", "123456", "camisetas");
-        if ($connection->connect_errno) {
-            printf("Connection failed: %s\n", $connection->connect_error);
-            exit();
-        }
+        include 'conexion.php';
            
         $query="SELECT * FROM camiseta WHERE id_camiseta='$cod'";
         if ($result = $connection->query($query)) {
@@ -94,11 +90,7 @@
                     <legend>EQUIPO</legend>
                     <span>Equipo:</span><select name="id_equipo" required><br>
                         <?php
-                          $connection = new mysqli("localhost", "root", "123456", "camisetas");
-                          if ($connection->connect_errno) {
-                             printf("Connection failed: %s\n", $connection->connect_error);
-                          exit();
-                         }
+                         include 'conexion.php';
                          $result = $connection->query("SELECT id_equipo,nombre FROM equipo");
                          if ($result) {
                            while ($obj=$result->fetch_object()) {
@@ -155,11 +147,7 @@
           move_uploaded_file($tmp_file, $target_file);
           echo "Imagen añadida";    
             
-        $connection = new mysqli("localhost", "root", "123456", "camisetas");
-        if ($connection->connect_errno) {
-            printf("Connection failed: %s\n", $connection->connect_error);
-            exit();
-        }
+        include 'conexion.php';
         //MAKING A UPDATE
         $id_camiseta=$_POST['id_camiseta'];
         $jugador=$_POST['jugador'];

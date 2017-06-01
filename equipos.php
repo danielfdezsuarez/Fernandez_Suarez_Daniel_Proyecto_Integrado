@@ -7,7 +7,7 @@
     header("Location: login.php");
   }
 ?>
-<?php include("tema.php"); ?>
+<?php include("tema2.php"); ?>
 
 <!DOCTYPE html>
 <html lang="en">

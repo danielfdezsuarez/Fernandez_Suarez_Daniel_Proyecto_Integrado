@@ -7,7 +7,7 @@
     header("Location: login.php");
   }
 ?>
-<?php include("tema.php"); ?>
+<?php include("tema2.php"); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -60,11 +60,7 @@
                     <legend>EQUIPO</legend>
                     <span>Equipo:</span><select name="cod_equipo" required><br>
                         <?php
-                          $connection = new mysqli("localhost", "root", "123456", "camisetas");
-                          if ($connection->connect_errno) {
-                             printf("Connection failed: %s\n", $connection->connect_error);
-                          exit();
-                         }
+                         include 'conexion.php';
                          $result = $connection->query("SELECT id_equipo,nombre FROM equipo");
                          if ($result) {
                            while ($obj=$result->fetch_object()) {
@@ -110,13 +106,7 @@
           //Put the file in its place
           move_uploaded_file($tmp_file, $target_file);
           echo "Imagen añadida";
-          $connection = new mysqli("localhost", "root", "123456", "camisetas");
-          
-          $connection->set_charset("uft8");
-          if ($connection->connect_errno) {
-              printf("Connection failed: %s\n", $connection->connect_error);
-              exit();
-          }
+          include 'conexion.php';
           //INSERTING THE NEW PRODUCT
           $id_camiseta=$_POST['id_camiseta'];
           $jugador=$_POST['jugador'];
@@ -157,13 +147,7 @@
           }
           
           /*  
-          $connection = new mysqli("localhost", "root", "123456", "camisetas");
-          $connection->set_charset("utf8");
-
-          if ($connection->connect_errno) {
-              printf("Connection failed: %s\n", $connection->connect_error);
-              exit();
-            }
+          include 'conexion.php';
           
           $query3="SELECT * from alerta";
             if ($result = $connection->query($query3)) {

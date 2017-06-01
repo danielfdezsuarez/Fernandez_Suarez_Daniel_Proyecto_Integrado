@@ -1,10 +1,6 @@
 <?php
-        $usuario=$_SESSION["user"];
-        $connection = new mysqli("localhost", "root", "123456", "camisetas");
-        if ($connection->connect_errno) {
-            printf("Connection failed: %s\n", $connection->connect_error);
-            exit();
-        }
+        /*$usuario=$_SESSION["user"];
+        include 'conexion.php';
         
         $query="SELECT * FROM usuario WHERE user='$usuario'";
         if ($result = $connection->query($query)) {
@@ -12,15 +8,12 @@
             $user=$obj->user;
             $tema=$obj->tema;
         }
-
-    /*
+        */
+        
+    
     function tema($usuario){
         $datos=[];
-        $connection = new mysqli("localhost", "root", "123456", "camisetas");
-        if ($connection->connect_errno) {
-            printf("Connection failed: %s\n", $connection->connect_error);
-            exit();
-        }
+        include 'conexion.php';
         
         $query="SELECT user,tema FROM usuario WHERE user='$usuario'";
         if ($result = $connection->query($query)) {
@@ -30,5 +23,5 @@
             return $datos;
         }  
     } 
-    */
+    
 ?>

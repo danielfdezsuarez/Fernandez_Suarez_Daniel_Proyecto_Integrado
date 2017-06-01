@@ -1,11 +1,5 @@
 <?php
-$connection = new mysqli("localhost", "root", "123456", "camisetas");
-      $connection->set_charset("utf8");
-      
-      if ($connection->connect_errno) {
-          printf("Connection failed: %s\n", $connection->connect_error);
-          exit();
-      }
+include 'conexion.php';
       
 $query = "select nombre, count(nombre) as num from equipo join camiseta_equipo on equipo.id_equipo=camiseta_equipo.id_equipo group by nombre";
 

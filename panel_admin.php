@@ -7,7 +7,7 @@
     header("Location: login.php");
   }
 ?>
-<?php include("tema.php"); ?>
+<?php include("tema2.php"); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,6 +18,18 @@
     <title>PANEL ADMIN</title>
     <style>
       <?php include 'css/logo.css'; ?>
+        img {
+            height: 50px;
+            width: 50px;
+        }
+        td {
+            text-align: center;
+            vertical-align: middle;
+        }
+        table {
+            width:90%;
+            font-size: 80%;
+        }
     </style>
   </head>
   <body>

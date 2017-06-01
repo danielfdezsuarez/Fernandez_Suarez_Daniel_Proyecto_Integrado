@@ -7,7 +7,7 @@
     header("Location: login.php");
   }
 ?>
-<?php include("tema.php"); ?>
+<?php include("tema2.php"); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -45,11 +45,7 @@
 
         <?php
         $cod=$_GET['id'];
-        $connection = new mysqli("localhost", "root", "123456", "camisetas");
-        if ($connection->connect_errno) {
-            printf("Connection failed: %s\n", $connection->connect_error);
-            exit();
-        }
+        include 'conexion.php';
         
         $query="SELECT * FROM equipo WHERE id_equipo='$cod'";
         if ($result = $connection->query($query)) {
@@ -115,11 +111,7 @@
           move_uploaded_file($tmp_file, $target_file);
           echo "Imagen añadida";    
         
-        $connection = new mysqli("localhost", "root", "123456", "camisetas");
-        if ($connection->connect_errno) {
-            printf("Connection failed: %s\n", $connection->connect_error);
-            exit();
-        }
+        include 'conexion.php';
         //MAKING A UPDATE
         $id_equipo=$_POST['id_equipo'];
         $club_seleccion=$_POST['club_seleccion'];

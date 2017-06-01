@@ -1,13 +1,32 @@
+<?php
+  session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <link rel="stylesheet" type="text/css" href="css/resultado.css">
+    <?php 
+        if (isset($_SESSION["user"])) {
+            echo 'Estás registrado como: '.$_SESSION['user'];
+            include("tema.php");
+        $datos=tema($_SESSION['user']);
+        foreach ($datos as $dato) {
+    ?>
+        <link rel="stylesheet" type="text/css" href="css/<?php echo $dato->tema;?>.css">
+    <?php 
+        }
+        } else {
+    ?>
+        <link rel="stylesheet" type="text/css" href="css/predeterminado.css">
+    <?php
+    }
+    ?>
     <style>
-      <?php include 'css/body.css'; ?>
       <?php include 'css/logo.css'; ?>
+      <?php include 'css/resultado.css'; ?>
     </style>
   </head>
   <body>
@@ -17,11 +36,7 @@
             <?php 
             $cod=$_GET['id'];
 
-            $connection = new mysqli("localhost", "root", "123456", "camisetas");
-            if ($connection->connect_errno) {
-                printf("Connection failed: %s\n", $connection->connect_error);
-                exit();
-            }
+            include 'conexion.php';
 
             $query3="SELECT id_equipo from camiseta_equipo where id_camiseta='$cod'";
             if ($result = $connection->query($query3)) {

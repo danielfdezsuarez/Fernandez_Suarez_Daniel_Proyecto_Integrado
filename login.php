@@ -22,12 +22,7 @@
 
     <?php
         if (isset($_POST["user"])) {
-          $connection = new mysqli("localhost", "root", "123456", "camisetas");
-          
-          if ($connection->connect_errno) {
-              printf("Connection failed: %s\n", $connection->connect_error);
-              exit();
-          }
+          include 'conexion.php';
           
           $consulta="select * from usuario where user='".$_POST["user"]."' and password=md5('".$_POST["password"]."')";
           
