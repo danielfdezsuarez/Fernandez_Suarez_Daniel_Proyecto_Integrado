@@ -1,40 +1,8 @@
--- phpMyAdmin SQL Dump
--- version 4.6.4
--- https://www.phpmyadmin.net/
---
--- Servidor: localhost:3306
--- Tiempo de generación: 08-03-2017 a las 11:46:15
--- Versión del servidor: 5.6.33
--- Versión de PHP: 5.6.26
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Base de datos: `camisetas`
---
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `alerta`
---
-
 CREATE TABLE `alerta` (
   `id_alerta` int(4) NOT NULL,
   `id_equipo` int(11) NOT NULL,
   `mail` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `alerta`
---
 
 INSERT INTO `alerta` (`id_alerta`, `id_equipo`, `mail`) VALUES
 (1, 6, 'rot2@gamil.com'),
@@ -45,12 +13,6 @@ INSERT INTO `alerta` (`id_alerta`, `id_equipo`, `mail`) VALUES
 (15, 2, 'dani@asir.petao'),
 (16, 21, 'sergio@camas'),
 (17, 19, 'fran@oli');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `camiseta`
---
 
 CREATE TABLE `camiseta` (
   `id_camiseta` int(5) NOT NULL,
@@ -64,9 +26,6 @@ CREATE TABLE `camiseta` (
   `observaciones` varchar(500) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
---
--- Volcado de datos para la tabla `camiseta`
---
 
 INSERT INTO `camiseta` (`id_camiseta`, `jugador`, `dorsal`, `marca`, `publicidad`, `temporada`, `competicion`, `imagen`, `observaciones`) VALUES
 (1, '', NULL, 'joma', '', '2001-02', 'liga_española', 'img/sevilla_1.jpg', 'blanca'),
@@ -104,20 +63,12 @@ INSERT INTO `camiseta` (`id_camiseta`, `jugador`, `dorsal`, `marca`, `publicidad
 (33, 'neymar', 11, 'nike', '', '2011', 'copa_america_2011', 'img/brasil_2_neymar_11.jpg', ''),
 (34, '', NULL, 'puma', '', '2004', 'eurocopa_2004', 'img/bulgaria_1.jpg', '');
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `camiseta_equipo`
---
 
 CREATE TABLE `camiseta_equipo` (
   `id_camiseta` int(5) NOT NULL DEFAULT '0',
   `id_equipo` int(5) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Volcado de datos para la tabla `camiseta_equipo`
---
 
 INSERT INTO `camiseta_equipo` (`id_camiseta`, `id_equipo`) VALUES
 (1, 1),
@@ -155,11 +106,6 @@ INSERT INTO `camiseta_equipo` (`id_camiseta`, `id_equipo`) VALUES
 (33, 20),
 (34, 21);
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `equipo`
---
 
 CREATE TABLE `equipo` (
   `id_equipo` int(5) NOT NULL,
@@ -170,9 +116,6 @@ CREATE TABLE `equipo` (
   `imagen_equipo` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Volcado de datos para la tabla `equipo`
---
 
 INSERT INTO `equipo` (`id_equipo`, `club_seleccion`, `nombre`, `pais`, `continente`, `imagen_equipo`) VALUES
 (1, 'club', 'sevilla_fc', 'españa', 'europa', 'img/escudo_sevilla1.png'),
@@ -197,11 +140,6 @@ INSERT INTO `equipo` (`id_equipo`, `club_seleccion`, `nombre`, `pais`, `continen
 (20, 'seleccion', 'brasil', 'brasil', 'america_del_sur', 'img/escudo_brasil1.png'),
 (21, 'seleccion', 'bulgaria', 'bulgaria', 'europa', 'img/escudo_bulgaria1.png');
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `usuario`
---
 
 CREATE TABLE `usuario` (
   `id_user` int(3) NOT NULL,
@@ -210,9 +148,6 @@ CREATE TABLE `usuario` (
   `mail` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Volcado de datos para la tabla `usuario`
---
 
 INSERT INTO `usuario` (`id_user`, `user`, `password`, `mail`) VALUES
 (1, 'dani', 'e10adc3949ba59abbe56e057f20f883e', 'dani@dani.com'),
@@ -222,83 +157,41 @@ INSERT INTO `usuario` (`id_user`, `user`, `password`, `mail`) VALUES
 (10, 'felipe', 'e10adc3949ba59abbe56e057f20f883e', ''),
 (11, 'sergio', 'e10adc3949ba59abbe56e057f20f883e', 'dani@petao');
 
---
--- Índices para tablas volcadas
---
 
---
--- Indices de la tabla `alerta`
---
 ALTER TABLE `alerta`
   ADD PRIMARY KEY (`id_alerta`),
   ADD KEY `id_equipo` (`id_equipo`);
 
---
--- Indices de la tabla `camiseta`
---
+
 ALTER TABLE `camiseta`
   ADD PRIMARY KEY (`id_camiseta`);
 
---
--- Indices de la tabla `camiseta_equipo`
---
+
 ALTER TABLE `camiseta_equipo`
   ADD PRIMARY KEY (`id_camiseta`,`id_equipo`),
   ADD KEY `id_equipo` (`id_equipo`);
 
---
--- Indices de la tabla `equipo`
---
 ALTER TABLE `equipo`
   ADD PRIMARY KEY (`id_equipo`);
 
---
--- Indices de la tabla `usuario`
---
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id_user`);
 
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `alerta`
---
 ALTER TABLE `alerta`
   MODIFY `id_alerta` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
---
--- AUTO_INCREMENT de la tabla `camiseta`
---
+
 ALTER TABLE `camiseta`
   MODIFY `id_camiseta` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
---
--- AUTO_INCREMENT de la tabla `equipo`
---
+
 ALTER TABLE `equipo`
   MODIFY `id_equipo` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
---
--- AUTO_INCREMENT de la tabla `usuario`
---
+
 ALTER TABLE `usuario`
   MODIFY `id_user` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
---
--- Restricciones para tablas volcadas
---
 
---
--- Filtros para la tabla `alerta`
---
 ALTER TABLE `alerta`
   ADD CONSTRAINT `alerta_ibfk_1` FOREIGN KEY (`id_equipo`) REFERENCES `equipo` (`id_equipo`);
 
---
--- Filtros para la tabla `camiseta_equipo`
---
 ALTER TABLE `camiseta_equipo`
   ADD CONSTRAINT `camiseta_equipo_ibfk_1` FOREIGN KEY (`id_camiseta`) REFERENCES `camiseta` (`id_camiseta`),
   ADD CONSTRAINT `camiseta_equipo_ibfk_2` FOREIGN KEY (`id_equipo`) REFERENCES `equipo` (`id_equipo`);
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
