@@ -72,21 +72,14 @@
 		
       
         <?php
-            var_dump($_POST);
+            //var_dump($_POST);
             $ip=$_POST["ip"];
             $userbd=$_POST["userbd"];
             $passwordbd=$_POST["passwordbd"];
             $nombrebd=$_POST["nombrebd"];
             $user=$_POST["user"];
+            $datos=$_POST["datos"];
 
-            /*$file = fopen("conexionbd.php", "w");
-            fwrite($file, "define('HOST','".$ip."');");
-            fwrite($file, "define('USER','".$userbd."');");
-            fwrite($file, "define('PASS','".$passwordbd."');");
-            fwrite($file, "define('DB','".$nombrebd."');");
-            fclose($file);*/
-      
-      
             $file = fopen("conexionbd.php", "w");
             fwrite($file, "define('HOST','".$ip."',true);");
             fwrite($file, "define('USER','".$userbd."',true);");
@@ -100,29 +93,33 @@
             exit();
             }
 
-
-            $tablas=file_get_contents('camisetas.sql');
+            if ($datos=='si') {
+                $tablas=file_get_contents('camisetas.sql');
+                
+            } else {
+                $tablas=file_get_contents('vacio.sql');
+            }
+            
+            //$tablas=file_get_contents('camisetas.sql');
             $tablas=explode(";", $tablas);
             foreach ($tablas as $tabla) {
             $insertar=$tabla;
             if ($insertar!="") {
             $query = $connection->query($insertar);
             if ($query) {
-            echo "Instalación Correcta";
+                echo "Correcto";
             }else{
-            echo "A la mierda!!!";
+                echo "Fallo";
             }
             }
             }
+            //unlink('instalador2.php');
+            header("Refresh:2; url=index.php");
             ?>
       
       
-            
-        
-      
-      
-            
-
       <?php endif ?>
+      
+      
   </body>
 </html>
