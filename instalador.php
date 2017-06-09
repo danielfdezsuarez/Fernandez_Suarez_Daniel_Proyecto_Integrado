@@ -113,6 +113,16 @@
             }
             }
             }
+      
+            $query3="INSERT INTO usuario VALUES('', '$user', md5('$password'), '', '')";
+              if ($result = $connection->query($query3)) {
+                  echo "Equipo añadido correctamente";
+                  header("Refresh:2; url=panel_admin.php");
+              } else {
+              echo "Fallo insert";
+              exit();
+              }
+      
             unlink('instalador.php');
             header("Refresh:2; url=index.php");
             ?>

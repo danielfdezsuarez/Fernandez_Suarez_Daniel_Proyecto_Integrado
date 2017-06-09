@@ -78,6 +78,7 @@
             $passwordbd=$_POST["passwordbd"];
             $nombrebd=$_POST["nombrebd"];
             $user=$_POST["user"];
+            $password=$_POST["password"];
             $datos=$_POST["datos"];
 
             $file = fopen("conexionbd.php", "w");
@@ -113,6 +114,16 @@
             }
             }
             }
+            
+            $query3="INSERT INTO usuario VALUES('', '$user', md5('$password'), '', '')";
+              if ($result = $connection->query($query3)) {
+                  echo "Equipo añadido correctamente";
+                  header("Refresh:2; url=panel_admin.php");
+              } else {
+              echo "Fallo insert";
+              exit();
+              }
+            
             //unlink('instalador2.php');
             header("Refresh:2; url=index.php");
             ?>
