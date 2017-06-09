@@ -63,7 +63,7 @@
           $password=$_POST['password'];
           $mail=$_POST['mail'];
           
-          $query="INSERT INTO usuario VALUES('', '$user', md5('$password'), '$mail')";
+          $query="INSERT INTO usuario VALUES('', '$user', md5('$password'), '$mail', '')";
           if ($result = $connection->query($query)) {
               echo "Usuario añadido correctamente";
               header("Refresh:2; url=usuarios.php");

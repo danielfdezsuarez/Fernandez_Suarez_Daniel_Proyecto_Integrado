@@ -18,6 +18,18 @@
     <title>EQUIPOS</title>
     <style>
       <?php include 'css/logo.css'; ?>
+        img {
+            height: 50px;
+            width: 50px;
+        }
+        td {
+            text-align: center;
+            vertical-align: middle;
+        }
+        table {
+            width:90%;
+            font-size: 80%;
+        }
     </style>
   </head>
   <body>
