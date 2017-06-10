@@ -78,13 +78,31 @@
             $passwordbd=$_POST["passwordbd"];
             $nombrebd=$_POST["nombrebd"];
             $user=$_POST["user"];
+            $password=$_POST["password"];
             $datos=$_POST["datos"];
-
-            $file = fopen("conexionbd.php", "w");
-            fwrite($file, "define('HOST','".$ip."',true);");
-            fwrite($file, "define('USER','".$userbd."',true);");
-            fwrite($file, "define('PASS','".$passwordbd."',true);");
-            fwrite($file, "define('DB','".$nombrebd."',true);");
+      
+            /*include 'conexion.php';*/
+            $connection = new mysqli("$ip","$userbd","$passwordbd");
+            
+            $query2="create database $nombrebd";
+              if ($result = $connection->query($query2)) {
+                  echo "bd creada";
+              } else {
+              echo "Fallo create database";
+              exit();
+              }
+          
+            $conex = '<?php $connection = new mysqli("'.$ip.'", "'.$userbd.'", "'.$passwordbd.'", "'.$nombrebd.'");
+                $connection->set_charset("utf8");
+      
+                  if ($connection->connect_errno) {
+                      printf("Connection failed: %s\n", $connection->connect_error);
+                      exit();
+                  }
+                ?>
+            ';
+            $file=fopen("conexion.php","w");
+            fwrite($file,$conex);
             fclose($file);
       
             $connection =  new mysqli("$ip","$userbd","$passwordbd","$nombrebd");
@@ -95,7 +113,6 @@
 
             if ($datos=='si') {
                 $tablas=file_get_contents('camisetas.sql');
-                
             } else {
                 $tablas=file_get_contents('vacio.sql');
             }
@@ -114,14 +131,13 @@
             }
             }
       
-            $query3="INSERT INTO usuario VALUES('', '$user', md5('$password'), '', '')";
-              if ($result = $connection->query($query3)) {
-                  echo "Equipo añadido correctamente";
-                  header("Refresh:2; url=panel_admin.php");
-              } else {
-              echo "Fallo insert";
-              exit();
-              }
+            $query3="INSERT INTO usuario VALUES('', '$user', md5('$password'), '', 'predeterminado')";
+            if ($result = $connection->query($query3)) {
+                echo "Admin creado";
+            } else {
+            echo "Fallo insert admin";
+            exit();
+            }
       
             unlink('instalador.php');
             header("Refresh:2; url=index.php");

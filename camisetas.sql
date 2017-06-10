@@ -145,7 +145,8 @@ CREATE TABLE `usuario` (
   `id_user` int(3) NOT NULL,
   `user` varchar(45) NOT NULL,
   `password` varchar(64) NOT NULL,
-  `mail` varchar(200) DEFAULT NULL
+  `mail` varchar(200) DEFAULT NULL,
+  `tema` varchar(20) NOT NULL DEFAULT 'predeterminado'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 

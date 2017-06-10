@@ -32,6 +32,8 @@
           $cliente=$_GET['id'];
           
       include 'conexion.php';
+          
+      ?>
 
       <?php
           $consulta="DELETE FROM usuario WHERE id_user=".$_GET['id'];

@@ -1,5 +1,11 @@
 <?php
-  session_start();
+    session_start();
+    $x="conexion.php";
+    if(file_exists($x)){
+        require_once("$x");
+      }else{
+        header("Location:instalador.php");
+    }
 ?>
 
 
@@ -36,7 +42,6 @@
         <a href="panel_admin.php"><button>PANEL ADMIN</button></a>
         <a href="login.php"><button>LOGIN</button></a>
         <a href="logout.php"><button>LOGOUT</button></a>
-        <a href="instalador.php"><button>INSTALADOR</button></a>
       </header>
       
       <?php include 'logo.php'; ?>

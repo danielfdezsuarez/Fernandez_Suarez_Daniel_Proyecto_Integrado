@@ -1,1 +1,0 @@
-define('HOST','localhost',true);define('USER','root',true);define('PASS','123456',true);define('DB','prueba22',true);
